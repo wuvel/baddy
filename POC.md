@@ -31,5 +31,5 @@ dari hasil cookie auth sebagai cookie check.
   string(5) "admin"
   ["pass"]=>
   bool(true)
-}
-```
+  }
+  ```
