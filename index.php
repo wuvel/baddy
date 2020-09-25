@@ -1,44 +1,44 @@
 <?php
 class User {
-	public $user = '';
-	public $pass = '';
+	public $username = '';
+	public $password = '';
 }
 
 function set_cookie($login) {
   $expire = time() + 7200;
   $cookie_auth = base64_encode(serialize($login));
-  $cookie_check = base64_encode(md5($cookie_auth));
+  $cookie_verif = base64_encode(md5($cookie_auth));
   unset($_COOKIE['auth']);
-  unset($_COOKIE['check']);
+  unset($_COOKIE['verif']);
   setcookie('auth', $cookie_auth, $expire, '/');
-  setcookie('check', $cookie_check, $expire, '/');
+  setcookie('verif', $cookie_verif, $expire, '/');
 }
 
-function get_credentials() {
+function get_creds() {
   $login=null;
-  if (isset($_COOKIE['auth']) && isset($_COOKIE['check'])) {
-    if(md5($_COOKIE['auth']) === base64_decode($_COOKIE['check'])) {
+  if (isset($_COOKIE['auth']) && isset($_COOKIE['verif'])) {
+    if(md5($_COOKIE['auth']) === base64_decode($_COOKIE['verif'])) {
       $login = unserialize(base64_decode($_COOKIE['auth']));
     }
     else {
       
     }
   }
-  elseif (isset($_POST['user'])) {
+  elseif (isset($_POST['username'])) {
     $login=new User();
-    $login->user=$_POST['user'];
-    $login->pass=$_POST['pass'];
+    $login->username=$_POST['username'];
+    $login->password=$_POST['password'];
   }
   return $login;
 }
 
 if(isset($_GET['logout'])) {
 	setcookie('auth', '', time()-7000000, '/');
-  setcookie('check', '', time()-7000000, '/');
+  setcookie('verif', '', time()-7000000, '/');
 }
 else {
 	$login = new User();
-	$login = get_credentials();
+	$login = get_creds();
 }
 ?>
 
@@ -76,12 +76,12 @@ else {
 
 	
 <?php
-if (isset($login) && $login->user === "guest" && $login->pass == "guest") {
+if (isset($login) && $login->username === "guest" && $login->password == "inipassword") {
   set_cookie($login);
 ?>
 <!-- User = guest -->
 <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-<h3 style="text-align:center;">Guest account</br>Nothing here Guest, try admin account later.</h3>
+<h3 style="text-align:center;">Guest account</br>Nothing here Guest. Not admin!</h3>
 </br>
 <div class="container-login100-form-btn">
 <p style="text-align:center;font-size:30px"><a href="index.php?logout">Logout</a></p>
@@ -90,7 +90,7 @@ if (isset($login) && $login->user === "guest" && $login->pass == "guest") {
 
 <?php
 }
-elseif (isset($login) && $login->user === "admin" && $login->pass == "1mnk7f189h198241nfa") {
+elseif (isset($login) && $login->username === "admin" && $login->password == "1mnk7f189h198241nfa") {
   set_cookie($login);
 ?>
 <!-- User = admin -->
@@ -117,15 +117,13 @@ else {
 					<span class="login100-form-title p-b-34 p-t-27">
 						SECRET PANEL
 					</span>
-					<div style="text-align:center;"> guest:guest if u forgot</div></br>
-
 					<div class="wrap-input100 validate-input" data-validate = "Enter username">
-						<input class="input100" type="text" placeholder="user" name="user" id="user" required data-validation-required-message="Please enter your user name.">
+						<input class="input100" type="text" placeholder="username" name="username" id="username" required data-validation-required-message="Please enter your user name.">
 						<span class="focus-input100" data-placeholder="&#xf207;"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Enter password">
-						<input class="input100" type="password" placeholder="password" name="pass" id="pass" required data-validation-required-message="Please enter your password.">
+						<input class="input100" type="password" placeholder="password" name="password" id="password" required data-validation-required-message="Please enter your password.">
 						<span class="focus-input100" data-placeholder="&#xf191;"></span>
 					</div>
 
@@ -173,6 +171,7 @@ else {
 	<script src="vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
+<!-- guest:inipassword -->
 
 </body>
 </html>
