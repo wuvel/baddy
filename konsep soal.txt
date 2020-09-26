@@ -1,0 +1,1 @@
+PHP Serialize dengan sedikit bumbu pengecoh, yaitu harus menyamakan cookie
