@@ -1,1 +1,1 @@
-None
+md5($_COOKIE['auth']) === base64_decode($_COOKIE['verif'])
