@@ -95,7 +95,7 @@ elseif (isset($login) && $login->username === "admin" && $login->password == "1m
 ?>
 <!-- User = admin -->
 <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
-<h3 style="text-align:center;">Admin account</br>hology13{b4d_s3r14l1z3_huhu_UwU}</h3>
+<h3 style="text-align:center;">Admin account</br>hology3{s3r14l1z3_3z_p4r55ss_3ksd33}</h3>
 </br>
 <div class="container-login100-form-btn">
 <p style="text-align:center;font-size:30px"><a href="index.php?logout">Logout</a></p>
